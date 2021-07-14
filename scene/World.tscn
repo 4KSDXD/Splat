@@ -1,0 +1,563 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://scene/MainCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://tres/land_tilesets.tres" type="TileSet" id=2]
+[ext_resource path="res://tres/one_way_tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://assets/background/background_night.png" type="Texture" id=4]
+[ext_resource path="res://scene/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/coin/coin_new.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/EncodeSansSC-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://script/CoinHUD.gd" type="Script" id=9]
+[ext_resource path="res://assets/fonts/BalsamiqSans-Bold.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://assets/sounds/world_music.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/coin/coin_main.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 238.9 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 63.5463, 30.6416 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 81.0405, 2.60883 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 91.0405, 20.6088 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 32.2705, 31.5611 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 90.2627, 26.6024 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 32.5508, 30.7515 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 89.6504, 26.0064 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 33.6934, 29.3547 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 372.584, 10 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 0.313726 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="DynamicFont" id=10]
+size = 50
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 70
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 100
+font_data = ExtResource( 10 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 249.244, 293.316 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 23
+font_data = ExtResource( 10 )
+
+[node name="MainWorld" type="Node2D"]
+position = Vector2( 155.563, 113.137 )
+
+[node name="FallPreventer" type="StaticBody2D" parent="."]
+position = Vector2( 117.599, 96.217 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallPreventer"]
+shape = SubResource( 1 )
+
+[node name="WorldMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -11.0
+autoplay = true
+
+[node name="One-Way-Tiles" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+centered_textures = true
+collision_layer = 2
+collision_mask = 17
+format = 1
+tile_data = PoolIntArray( -130899, 0, 0, -65362, 0, 0, 175, 0, 0, 65712, 0, 0, 131082, 0, 0, 131083, 0, 0, 131086, 0, 0, 131087, 0, 0, 131249, 0, 0, 196786, 0, 0, 262323, 0, 0, 327860, 0, 0, 393345, 0, 0, 393346, 0, 0, 393348, 0, 0, 393350, 0, 0, 393352, 0, 0, 393353, 0, 0, 393354, 0, 0, 393357, 0, 0, 393358, 0, 0, 393359, 0, 0, 393360, 0, 0, 393361, 0, 0, 393397, 0, 0, 458934, 0, 0, 458957, 0, 0, 459014, 0, 0, 459017, 0, 0, 459020, 0, 0, 524510, 0, 0, 589863, 0, 0, 589864, 0, 0, 589865, 0, 0, 589866, 0, 0, 589867, 0, 0, 589879, 0, 0, 589880, 0, 0, 589881, 0, 0, 589882, 0, 0, 589883, 0, 0, 589884, 0, 0, 589885, 0, 0, 589886, 0, 0, 589887, 0, 0, 589890, 0, 0, 589891, 0, 0, 589892, 0, 0, 589893, 0, 0, 589894, 0, 0, 589895, 0, 0, 589896, 0, 0, 589897, 0, 0, 655387, 0, 0, 721002, 0, 0, 721004, 0, 0, 721118, 0, 0, 721120, 0, 0, 721121, 0, 0, 721123, 0, 0, 721125, 0, 0, 786535, 0, 0 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="One-Way-Tiles"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 704.806, 158.74 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 958.806, 161.74 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 2632, 580 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 3703.23, 595.879 )
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 8289.24, 415.31 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 8790.57, 411.506 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 8607.92, 413.751 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 9183.05, 411.743 )
+shape = SubResource( 14 )
+one_way_collision = true
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 11101.7, -97.5856 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 11230.1, 30.7813 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 11356.6, 157.26 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 11488.7, 285.627 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 11617.1, 417.77 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 14683.9, 735.25 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 16797.1, 478.671 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 17183.2, 481.068 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 14433.1, 735.25 )
+shape = SubResource( 15 )
+one_way_collision = true
+
+[node name="MainTiles" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+collision_layer = 2
+collision_mask = 17
+format = 1
+tile_data = PoolIntArray( -327552, 0, 0, -261973, 0, 0, -196482, 0, 0, -196438, 0, 0, -65412, 0, 0, -65368, 0, 0, 167, 0, 0, 244, 0, 0, 247, 0, 0, 65658, 0, 0, 131237, 0, 0, 131313, 0, 0, 131321, 0, 0, 196645, 0, 0, 196728, 0, 0, 196772, 0, 0, 262293, 0, 0, 262388, 0, 0, 262396, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327798, 0, 0, 327842, 0, 0, 327880, 0, 0, 393250, 0, 0, 393267, 0, 0, 393316, 0, 0, 393357, 0, 0, 393363, 0, 0, 393368, 0, 0, 393370, 0, 0, 393371, 0, 0, 393373, 0, 0, 393377, 0, 0, 393457, 0, 0, 458775, 0, 0, 458785, 0, 0, 458801, 0, 0, 458868, 0, 0, 458936, 0, 0, 458938, 0, 0, 458940, 0, 0, 458942, 0, 0, 458944, 0, 0, 458949, 0, 0, 458967, 0, 0, 459000, 0, 0, 524307, 0, 0, 524308, 0, 0, 524418, 0, 0, 524501, 0, 0, 524532, 0, 0, 589848, 0, 0, 589854, 0, 0, 589859, 0, 0, 589863, 0, 0, 589868, 0, 0, 589869, 0, 0, 589870, 0, 0, 589871, 0, 0, 589872, 0, 0, 589877, 0, 0, 589885, 0, 0, 589900, 0, 0, 589901, 0, 0, 589905, 0, 0, 589906, 0, 0, 589910, 0, 0, 589915, 0, 0, 589920, 0, 0, 589921, 0, 0, 589938, 0, 0, 589953, 0, 0, 590018, 0, 0, 590026, 0, 0, 590036, 0, 0, 590085, 0, 0, 590093, 0, 0, 655389, 0, 0, 655571, 0, 0, 655595, 0, 0, 655596, 0, 0, 655597, 0, 0, 655602, 0, 0, 655612, 0, 0, 721000, 0, 0, 721005, 0, 0, 721008, 0, 0, 721023, 0, 0, 721113, 0, 0, 721129, 0, 0, 721130, 0, 0, 721133, 0, 0, 721134, 0, 0, 721135, 0, 0, 721136, 0, 0, 721156, 0, 0, 786469, 0, 0, 786471, 0, 0, 786483, 0, 0, 786487, 0, 0, 786495, 0, 0, 786498, 0, 0, 786499, 0, 0, 786501, 0, 0, 786502, 0, 0, 786504, 0, 0, 786505, 0, 0, 786521, 0, 0, 786527, 0, 0, 786636, 0, 0, 786637, 0, 0, 786638, 0, 0, 786639, 0, 0, 786640, 0, 0, 786641, 0, 0, 852009, 0, 0, 852013, 0, 0, 852016, 0, 0, 852026, 0, 0, 852029, 0, 0, 852070, 0, 0, 852093, 0, 0, 852210, 0, 0, 852212, 0, 0, 852216, 0, 0, 852223, 0, 0, 852227, 0, 0, 917547, 0, 0, 917605, 0, 0, 917618, 0, 0, 917620, 0, 0, 917623, 0, 0, 917625, 0, 0, 983131, 0, 0 )
+
+[node name="MainCharacter" parent="." instance=ExtResource( 1 )]
+position = Vector2( 250.504, 325.614 )
+collision_mask = 31
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+position = Vector2( -6, 4 )
+current = true
+limit_left = -1088
+limit_top = -600
+limit_right = 100000
+limit_bottom = 100000
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.3
+drag_margin_right = 0.3
+editor_draw_limits = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1280, 960 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/Background"]
+position = Vector2( 39.5147, -241.858 )
+scale = Vector2( 48.5, 45.0625 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="FallArea" type="Area2D" parent="."]
+position = Vector2( 10518.6, 1042.25 )
+scale = Vector2( 30, 1 )
+collision_layer = 4
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallArea"]
+shape = SubResource( 8 )
+
+[node name="CoinHUD" type="CanvasLayer" parent="."]
+script = ExtResource( 9 )
+
+[node name="Panel" type="Panel" parent="CoinHUD"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 278.0
+margin_bottom = 160.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CoinHUD"]
+margin_left = 52.2132
+margin_top = 41.7279
+margin_right = 143.213
+margin_bottom = 136.728
+texture = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="X" type="Label" parent="CoinHUD"]
+margin_left = 139.657
+margin_top = 76.5067
+margin_right = 421.657
+margin_bottom = 281.507
+custom_fonts/font = SubResource( 10 )
+custom_colors/font_color = Color( 1, 0.937255, 0, 1 )
+text = "x"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoinLabel" type="Label" parent="CoinHUD"]
+margin_left = 180.322
+margin_top = 46.3015
+margin_right = 277.322
+margin_bottom = 135.302
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 1, 0.796078, 0, 1 )
+text = "N"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Coins" type="Node2D" parent="."]
+
+[node name="Coin1" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 400.222, 288.5 )
+
+[node name="Coin8" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 3123.51, 778.453 )
+
+[node name="Coin11" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 3948.82, 552.504 )
+
+[node name="Coin14" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4481.58, 559.639 )
+
+[node name="Coin18" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 5256.94, 538.233 )
+
+[node name="Coin22" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 6448.53, 347.96 )
+
+[node name="Coin25" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 8042.07, 798.271 )
+
+[node name="Coin33" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 10797.8, -93.8478 )
+
+[node name="Coin40" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 13161.7, 412.207 )
+
+[node name="Coin47" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 14240.2, 490.322 )
+
+[node name="Coin51" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 15931.6, 419.611 )
+
+[node name="Coin56" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 15674.2, 812.763 )
+
+[node name="Coin57" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 15974, 116.969 )
+
+[node name="Coin58" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 16174.8, 227.278 )
+
+[node name="Coin59" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 17198.7, 430.925 )
+
+[node name="Coin60" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 16740.5, 561.032 )
+
+[node name="Coin61" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 16361.5, 790.135 )
+
+[node name="Coin52" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 15394.2, 660.027 )
+
+[node name="Coin53" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 14695.6, 682.655 )
+
+[node name="Coin54" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 14409.9, 676.998 )
+
+[node name="Coin55" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 15122.7, 600.63 )
+
+[node name="Coin48" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 13942.9, 679.31 )
+
+[node name="Coin49" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 13804.3, 422.286 )
+
+[node name="Coin50" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 13605.2, 548.278 )
+
+[node name="Coin44" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 12650.2, 414.727 )
+
+[node name="Coin45" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 12461.2, 540.719 )
+
+[node name="Coin46" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 12203.8, 419.099 )
+
+[node name="Coin41" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 11504.1, 133.194 )
+
+[node name="Coin42" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 11378, 99.5584 )
+
+[node name="Coin43" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 11174.5, -134.211 )
+
+[node name="Coin34" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 10532.7, 171.248 )
+
+[node name="Coin35" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 9966, 363.324 )
+
+[node name="Coin36" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 9453.27, 371.261 )
+
+[node name="Coin37" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 9323.1, 369.673 )
+
+[node name="Coin38" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 8873.86, 368.086 )
+
+[node name="Coin39" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 8623.05, 358.561 )
+
+[node name="Coin29" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 7782.82, 859.319 )
+
+[node name="Coin30" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 7659.14, 868.833 )
+
+[node name="Coin31" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 7461.73, 866.455 )
+
+[node name="Coin32" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 7466.49, 426.448 )
+
+[node name="Coin26" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 7016.97, 683.317 )
+
+[node name="Coin27" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 6510.37, 859.319 )
+
+[node name="Coin28" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 6762.48, 692.83 )
+
+[node name="Coin23" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 6210.69, 535.855 )
+
+[node name="Coin24" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 5547.11, 533.477 )
+
+[node name="Coin19" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4935.86, 542.99 )
+
+[node name="Coin20" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4683.75, 730.885 )
+
+[node name="Coin21" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4491.09, 738.02 )
+
+[node name="Coin15" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4281.79, 740.399 )
+
+[node name="Coin16" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 4084.38, 735.642 )
+
+[node name="Coin17" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 3953.57, 802.237 )
+
+[node name="Coin12" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 3563.51, 742.777 )
+
+[node name="Coin13" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 3437.46, 552.504 )
+
+[node name="Coin9" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 2923.72, 802.237 )
+
+[node name="Coin10" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 2538.42, 742.777 )
+
+[node name="Coin5" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 2784.33, 557.891 )
+
+[node name="Coin6" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 2223.1, 344.623 )
+
+[node name="Coin7" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 1309.42, 472.584 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 617.173, 280.091 )
+
+[node name="Coin3" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 798.807, 19.4131 )
+
+[node name="Coin4" parent="Coins" instance=ExtResource( 6 )]
+position = Vector2( 825.16, 280.646 )
+
+[node name="LeapOfFaith!" type="Label" parent="."]
+margin_left = 17309.3
+margin_top = 378.82
+margin_right = 17918.3
+margin_bottom = 538.819
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.00784314, 1, 0, 1 )
+text = "Leap of Fath!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Portal!" type="Area2D" parent="."]
+position = Vector2( 3798.79, 320.723 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal!"]
+position = Vector2( 13801.8, 526.191 )
+shape = SubResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Portal!/CollisionShape2D"]
+position = Vector2( 32.5273, -42.4263 )
+scale = Vector2( 11.7392, 14.1699 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SafeBlocks" type="Label" parent="."]
+margin_left = 11246.1
+margin_top = -111.636
+margin_right = 11766.1
+margin_bottom = -53.6364
+custom_fonts/font = SubResource( 16 )
+text = "Including the first block, every other block is safe"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="FallArea" to="MainCharacter" method="_on_FallArea_body_entered"]
+[connection signal="coins_collected" from="Coins/Coin1" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin8" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin11" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin14" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin18" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin22" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin25" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin33" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin40" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin47" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin51" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin56" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin57" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin58" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin59" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin60" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin61" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin52" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin53" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin54" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin55" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin48" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin49" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin50" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin44" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin45" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin46" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin41" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin42" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin43" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin34" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin35" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin36" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin37" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin38" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin39" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin29" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin30" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin31" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin32" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin26" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin27" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin28" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin23" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin24" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin19" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin20" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin21" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin15" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin16" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin17" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin12" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin13" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin9" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin10" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin5" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin6" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin7" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin2" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin3" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="coins_collected" from="Coins/Coin4" to="CoinHUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="Portal!" to="MainCharacter" method="_on_Portal_body_entered"]

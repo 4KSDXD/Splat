@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tres/MainCharacterAnimations.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://script/MainCharacter.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/jump_sound.wav" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.80527, 86.8673 )
+
+[node name="MainCharacter" type="KinematicBody2D"]
+position = Vector2( 70.5123, 91.3529 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -61.4712, -122.451 )
+scale = Vector2( 1.96663, 2.75205 )
+frames = ExtResource( 1 )
+animation = "animation_idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -79.6127, -93.3107 )
+scale = Vector2( -1.28149, 0.681374 )
+shape = SubResource( 1 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -11.139
+pitch_scale = 0.68

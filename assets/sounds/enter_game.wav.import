@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enter_game.wav-3762da9767a4d1f3dd98b32d38e3b6f6.sample"
+
+[deps]
+
+source_file="res://assets/sounds/enter_game.wav"
+dest_files=[ "res://.import/enter_game.wav-3762da9767a4d1f3dd98b32d38e3b6f6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

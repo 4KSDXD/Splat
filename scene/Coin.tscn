@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/sounds/coin_collected.wav" type="AudioStream" id=1]
+[ext_resource path="res://script/Coin.gd" type="Script" id=2]
+[ext_resource path="res://assets/coin/coin_new.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.5953
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "animation_spin",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=3]
+resource_name = "animation_bounce"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7.39909, -6.40877 ), Vector2( 4.09556, -230.107 ), Vector2( 5.03941, -114.01 ), Vector2( 8.60301, -5.32056 ) ]
+}
+
+[node name="Coin" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -14.3884, -15.4881 )
+scale = Vector2( -1.49337, 1.53886 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -13.7813, -16.4772 )
+scale = Vector2( 0.245659, 0.221682 )
+frames = SubResource( 2 )
+animation = "animation_spin"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/animation_bounce = SubResource( 3 )
+
+[node name="CoinSoundCollected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
