@@ -13,4 +13,3 @@ func _on_Exit_pressed():
 	hide()
 	get_tree().paused = false
 	get_tree().change_scene("res://scene//TitleScreen.tscn")
- 
