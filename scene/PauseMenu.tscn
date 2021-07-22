@@ -31,18 +31,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exit" type="Button" parent="Pause/ColorRect"]
-margin_left = 625.391
-margin_top = 615.557
-margin_right = 1316.39
-margin_bottom = 743.557
-custom_fonts/font = SubResource( 1 )
-text = "Exit"
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Continue" type="Button" parent="Pause/ColorRect"]
 margin_left = 631.74
 margin_top = 336.175
@@ -55,5 +43,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Pause/ColorRect/Exit" to="Pause" method="_on_Exit_pressed"]
+[node name="Exit" type="Button" parent="Pause/ColorRect"]
+margin_left = 627.769
+margin_top = 515.663
+margin_right = 1318.77
+margin_bottom = 643.663
+custom_fonts/font = SubResource( 1 )
+text = "Exit"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="Pause/ColorRect/Continue" to="Pause" method="_on_Continue_pressed"]
+[connection signal="pressed" from="Pause/ColorRect/Exit" to="Pause" method="_on_Exit_pressed"]
