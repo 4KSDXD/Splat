@@ -10,7 +10,7 @@
 script/source = "extends Control
 
 func _ready():
-	$CoinNumber.text = String(Globals.coins) + \"/62\"
+	$CoinNumber.text = String(Globals.coins) + \"/61\"
 "
 
 [sub_resource type="DynamicFont" id=2]

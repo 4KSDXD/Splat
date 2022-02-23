@@ -189,6 +189,11 @@ position = Vector2( 14433.1, 735.25 )
 shape = SubResource( 9 )
 one_way_collision = true
 
+[node name="CollisionShape2D20" type="CollisionShape2D" parent="One-Way-Tiles/StaticBody2D"]
+position = Vector2( 14359.1, 735.25 )
+shape = SubResource( 9 )
+one_way_collision = true
+
 [node name="MainTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 collision_layer = 2
@@ -197,7 +202,7 @@ format = 1
 tile_data = PoolIntArray( -393086, 0, 0, -327552, 0, 0, -262012, 0, 0, -261973, 0, 0, -196482, 0, 0, -196438, 0, 0, -65412, 0, 0, -65402, 0, 0, -65368, 0, 0, 167, 0, 0, 244, 0, 0, 247, 0, 0, 65658, 0, 0, 131208, 0, 0, 131237, 0, 0, 131313, 0, 0, 131321, 0, 0, 196645, 0, 0, 196728, 0, 0, 196772, 0, 0, 262284, 0, 0, 262293, 0, 0, 262388, 0, 0, 262396, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327798, 0, 0, 327842, 0, 0, 327880, 0, 0, 393250, 0, 0, 393267, 0, 0, 393316, 0, 0, 393357, 0, 0, 393363, 0, 0, 393368, 0, 0, 393370, 0, 0, 393371, 0, 0, 393373, 0, 0, 393377, 0, 0, 393457, 0, 0, 458775, 0, 0, 458785, 0, 0, 458801, 0, 0, 458868, 0, 0, 458936, 0, 0, 458938, 0, 0, 458940, 0, 0, 458942, 0, 0, 458944, 0, 0, 458949, 0, 0, 458967, 0, 0, 459000, 0, 0, 459017, 0, 0, 524307, 0, 0, 524308, 0, 0, 524418, 0, 0, 524501, 0, 0, 524532, 0, 0, 589848, 0, 0, 589854, 0, 0, 589859, 0, 0, 589863, 0, 0, 589868, 0, 0, 589869, 0, 0, 589870, 0, 0, 589871, 0, 0, 589872, 0, 0, 589877, 0, 0, 589885, 0, 0, 589900, 0, 0, 589901, 0, 0, 589905, 0, 0, 589906, 0, 0, 589910, 0, 0, 589915, 0, 0, 589920, 0, 0, 589921, 0, 0, 589938, 0, 0, 589953, 0, 0, 590018, 0, 0, 590026, 0, 0, 590036, 0, 0, 590085, 0, 0, 590093, 0, 0, 655389, 0, 0, 655571, 0, 0, 655595, 0, 0, 655596, 0, 0, 655597, 0, 0, 655602, 0, 0, 655612, 0, 0, 721000, 0, 0, 721005, 0, 0, 721008, 0, 0, 721023, 0, 0, 721113, 0, 0, 721129, 0, 0, 721130, 0, 0, 721133, 0, 0, 721134, 0, 0, 721135, 0, 0, 721136, 0, 0, 721156, 0, 0, 786469, 0, 0, 786471, 0, 0, 786483, 0, 0, 786487, 0, 0, 786495, 0, 0, 786498, 0, 0, 786499, 0, 0, 786501, 0, 0, 786502, 0, 0, 786504, 0, 0, 786505, 0, 0, 786521, 0, 0, 786527, 0, 0, 786636, 0, 0, 786637, 0, 0, 786638, 0, 0, 786639, 0, 0, 786640, 0, 0, 786641, 0, 0, 852009, 0, 0, 852013, 0, 0, 852016, 0, 0, 852026, 0, 0, 852029, 0, 0, 852070, 0, 0, 852079, 0, 0, 852093, 0, 0, 852210, 0, 0, 852212, 0, 0, 852216, 0, 0, 852223, 0, 0, 852227, 0, 0, 917547, 0, 0, 917605, 0, 0, 917610, 0, 0, 917612, 0, 0, 917618, 0, 0, 917620, 0, 0, 917623, 0, 0, 917625, 0, 0, 983131, 0, 0, 983150, 0, 0 )
 
 [node name="MainCharacter" parent="." instance=ExtResource( 1 )]
-position = Vector2( 260.501, 342.048 )
+position = Vector2( 291.69, 322.984 )
 collision_mask = 31
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
@@ -437,9 +442,6 @@ position = Vector2( 4281.79, 740.399 )
 [node name="Coin16" parent="Coins" instance=ExtResource( 6 )]
 position = Vector2( 4084.38, 735.642 )
 
-[node name="Coin17" parent="Coins" instance=ExtResource( 6 )]
-position = Vector2( 3953.57, 802.237 )
-
 [node name="Coin12" parent="Coins" instance=ExtResource( 6 )]
 position = Vector2( 3563.51, 742.777 )
 
@@ -560,7 +562,6 @@ __meta__ = {
 [connection signal="coins_collected" from="Coins/Coin21" to="CoinHUD" method="_on_coin_collected"]
 [connection signal="coins_collected" from="Coins/Coin15" to="CoinHUD" method="_on_coin_collected"]
 [connection signal="coins_collected" from="Coins/Coin16" to="CoinHUD" method="_on_coin_collected"]
-[connection signal="coins_collected" from="Coins/Coin17" to="CoinHUD" method="_on_coin_collected"]
 [connection signal="coins_collected" from="Coins/Coin12" to="CoinHUD" method="_on_coin_collected"]
 [connection signal="coins_collected" from="Coins/Coin13" to="CoinHUD" method="_on_coin_collected"]
 [connection signal="coins_collected" from="Coins/Coin9" to="CoinHUD" method="_on_coin_collected"]
